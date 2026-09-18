@@ -1,0 +1,4 @@
+src/Hero.tsx
+src/auth/login.tsx
+prisma/schema.prisma
+src/theme/dark-mode.tsx

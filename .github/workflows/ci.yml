@@ -1,0 +1,26 @@
+name: ci
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  scanners:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: examples must fail
+        run: |
+          set +e
+          node skills/ask-first/scripts/scan.mjs examples/ask-first/bad-send.md; test $? -eq 1
+          node skills/tool-receipts/scripts/scan.mjs examples/tool-receipts/fake.json; test $? -eq 1
+          node skills/safe-cron/scripts/scan.mjs examples/safe-cron/bad-automation.md; test $? -eq 1
+          node skills/scope-lock/scripts/scan.mjs examples/scope-lock; test $? -eq 1
+          node skills/source-cite/scripts/scan.mjs examples/source-cite/unsourced.md; test $? -eq 1
+      - name: SKILL.md present
+        run: |
+          for s in ask-first tool-receipts safe-cron scope-lock source-cite; do
+            test -f "skills/$s/SKILL.md"
+          done
