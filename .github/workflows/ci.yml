@@ -19,6 +19,13 @@ jobs:
           node skills/safe-cron/scripts/scan.mjs examples/safe-cron/bad-automation.md; test $? -eq 1
           node skills/scope-lock/scripts/scan.mjs examples/scope-lock; test $? -eq 1
           node skills/source-cite/scripts/scan.mjs examples/source-cite/unsourced.md; test $? -eq 1
+      - name: examples must pass
+        run: |
+          node skills/ask-first/scripts/scan.mjs examples/ask-first/ok-send.md
+          node skills/tool-receipts/scripts/scan.mjs examples/tool-receipts/ok.json
+          node skills/safe-cron/scripts/scan.mjs examples/safe-cron/ok-automation.md
+          node skills/scope-lock/scripts/scan.mjs examples/scope-lock-ok
+          node skills/source-cite/scripts/scan.mjs examples/source-cite/ok.md
       - name: SKILL.md present
         run: |
           for s in ask-first tool-receipts safe-cron scope-lock source-cite; do
