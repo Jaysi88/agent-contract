@@ -1,0 +1,11 @@
+{
+  "$schema": "https://skills.sh/schemas/skills.sh.schema.json",
+  "notGrouped": "bottom",
+  "groupings": [
+    {
+      "title": "Contract",
+      "description": "The constitution every agent, Grok bot, automation, vibe coder, and personal assistant must keep.",
+      "skills": ["ask-first", "tool-receipts", "safe-cron", "scope-lock", "source-cite"]
+    }
+  ]
+}
